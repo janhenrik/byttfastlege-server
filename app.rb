@@ -4,8 +4,14 @@ require 'json'
 require_relative 'html_parser.rb'
 require_relative 'fastlege.rb'
 
-APP_ROOT = File.expand_path(File.dirname(__FILE__))
-DATABASE_URL = "sqlite3://#{APP_ROOT}/db.sqlite3" if DATABASE_URL.empty?
+when ENV['RACK_ENV']
+	'production'
+		DATABASE_URL = ENV['DATABASE_URL']
+	else
+		APP_ROOT = File.expand_path(File.dirname(__FILE__))
+		DATABASE_URL = "sqlite3://#{APP_ROOT}/db.sqlite3"
+end
+
 DataMapper::setup(:default, "#{DATABASE_URL}")
 DataMapper.auto_upgrade!
 

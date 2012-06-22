@@ -5,10 +5,10 @@ gem 'haml'
 gem 'data_mapper'
 gem 'nokogiri'
 gem 'unicorn'
-group :development do
+group :development, :test do
   gem "sqlite3"
   gem 'dm-sqlite-adapter'
 end
-group :test, :production do
+group :production do
   gem "pg"
 end
