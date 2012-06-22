@@ -1,4 +1,3 @@
-require 'rubygems'  
 require 'sinatra'  
 require 'haml'  
 require 'json'
@@ -6,7 +5,8 @@ require_relative 'html_parser.rb'
 require_relative 'fastlege.rb'
 
 APP_ROOT = File.expand_path(File.dirname(__FILE__))
-DataMapper::setup(:default, "sqlite3://#{APP_ROOT}/db.sqlite3")
+DATABASE_URL = "sqlite3://#{APP_ROOT}/db.sqlite3" if DATABASE_URL.empty?
+DataMapper::setup(:default, "#{DATABASE_URL}")
 DataMapper.auto_upgrade!
 
 Thread.new {
