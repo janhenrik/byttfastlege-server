@@ -4,10 +4,10 @@ gem 'thin'
 gem 'haml'
 gem 'data_mapper'
 gem 'nokogiri'
-gem 'dm-sqlite-adapter'
 gem 'unicorn'
 group :development do
   gem "sqlite3"
+  gem 'dm-sqlite-adapter'
 end
 group :test, :production do
   gem "pg"
