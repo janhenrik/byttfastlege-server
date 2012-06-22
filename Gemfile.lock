@@ -60,6 +60,7 @@ GEM
     kgio (2.7.4)
     multi_json (1.0.4)
     nokogiri (1.5.4)
+    pg (0.13.2)
     rack (1.4.1)
     raindrops (0.10.0)
     sinatra (1.1.0)
@@ -86,6 +87,7 @@ DEPENDENCIES
   dm-sqlite-adapter
   haml
   nokogiri
+  pg
   sinatra (= 1.1.0)
   sqlite3
   thin
