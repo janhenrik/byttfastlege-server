@@ -20,10 +20,9 @@ class HTMLParser
 	}
 
 	def self.parse
-		puts Fastlege.count
 		fastleger = Fastlege.all
 		if fastleger.empty? then
-			puts "Fastleger.empty!"
+			puts "Database empty, rebuilding database..."
 			page = Nokogiri::HTML(open("testfiles/fastleger.html"))
 
 			fastleger = page.css('table#fastlege').css('tbody').css('tr').css('td').each_with_index.reduce([]) do |leger, node| 
@@ -34,6 +33,8 @@ class HTMLParser
 				leger.last.save
 				leger
 			end
+		else
+			puts "Database already, there. OK!"
 		end
 		fastleger
 	end
