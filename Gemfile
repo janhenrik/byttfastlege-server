@@ -7,10 +7,10 @@ gem 'data_mapper'
 gem 'nokogiri'
 gem 'dm-sqlite-adapter'
 gem 'unicorn'
-group :development, :test do
+group :development do
   gem "sqlite3"
 end
 
-group :production do
+group :test, :production do
   gem "pg"
 end
