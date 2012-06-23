@@ -25,7 +25,8 @@ class HTMLParser
 			puts "Database empty, rebuilding database..."
 			page = Nokogiri::HTML(open("testfiles/fastleger.html"))
 
-			fastleger = page.css('table#fastlege').css('tbody').css('tr').css('td').each_with_index.reduce([]) do |leger, node| 
+			fastleger = page.css('table#fastlege').css('tbody').css('tr').css('td')
+						.each_with_index.reduce([]) do |leger, node| 
 				index = node.last % 10
 				nodetekst = node.first.text.gsub("\n",'').gsub("\r",'').gsub("\t",'')
 				leger << Fastlege.new if index == 0
@@ -34,7 +35,7 @@ class HTMLParser
 				leger
 			end
 		else
-			puts "Database already, there. OK!"
+			puts "Database allready there. OK!"
 		end
 		fastleger
 	end

@@ -1,5 +1,3 @@
-todo
-
-http://gembundler.com/
 https://github.com/javan/whenever, se railscast
+
 
