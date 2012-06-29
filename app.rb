@@ -1,22 +1,8 @@
 require 'sinatra'  
 require 'haml'  
 require 'json'
-require_relative 'html_parser.rb'
 require_relative 'fastlege.rb'
-
-if ENV['RACK_ENV'] == 'production' then
-	DATABASE_URL = ENV['DATABASE_URL']
-else
-	APP_ROOT = File.expand_path(File.dirname(__FILE__))
-	DATABASE_URL = "sqlite3://#{APP_ROOT}/db/db.sqlite3"
-end
-
-DataMapper::setup(:default, "#{DATABASE_URL}")
-DataMapper.auto_upgrade!
-
-Thread.new {
-	HTMLParser.parse
-}
+require_relative 'setup_database.rb'
 
 get '/' do  
 	haml :index  
