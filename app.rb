@@ -35,7 +35,7 @@ end
 get '/fastleger/kvinnerioslo' do
 	leger = Fastlege.all(:poststed.like => '%Oslo') |
 			Fastlege.all(:kjonn => 'K') 
-	leger.count.to_json
+	leger.to_json
 end
 
 get '/fastlege/:id' do
