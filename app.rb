@@ -15,10 +15,10 @@ end
 # Freetextsearch, navn, praksisnavn, poststed
 get '/fastleger/search/:value' do
 	like = "%" + params[:value] + "%"
-	lege = Fastlege.all(:navn.like => like) |
-	Fastlege.all(:praksisnavn.like => like) |
-	Fastlege.all(:poststed.like => like)
-	lege.to_json
+	leger =  Fastlege.all(:navn.like => like) |
+			Fastlege.all(:praksisnavn.like => like) |
+			Fastlege.all(:poststed.like => like)
+	leger.to_json
 end
 
 
@@ -30,6 +30,12 @@ end
 get '/fastleger/:attribute/:value/count' do
 	like = "%" + params[:value] + "%"
 	Fastlege.count(params[:attribute].to_sym.like => like).to_json
+end
+
+get '/fastleger/kvinnerioslo' do
+	leger = Fastlege.all(:poststed.like => '%Oslo') |
+			Fastlege.all(:kjonn => 'K') 
+	leger.count.to_json
 end
 
 get '/fastlege/:id' do
